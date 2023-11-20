@@ -17,7 +17,7 @@ This script is meant for creating, updating and deleting collections on Prisma C
 
 * Creating multiple collections using a directory path with JSON files
 
->```$ python3 manageCollection.py --username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --path $PATH --skip-tls-verify```
+>```$ python3 manageCollection.py --username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --path $PATH  --skip-tls-verify```
 
 * Deleting a single collection
 
@@ -42,7 +42,7 @@ This script is meant for creating, updating and deleting collections on Prisma C
 * ```--code-repos``` (optional): Code repositories to be scoped by the collection. If not set it will use the wildcard value of **[*]**.
 * ```--clusters``` (optional): Clusters to be scoped by the collection. If not set it will use the wildcard value of **[*]**.
 * ```--color``` (optional): Color to be used by the collection on the Web UI. This must be an hexadecimal value. By default it's value is **#000000** which represents the color black.
-* ```--override``` (optional): Override an existing collection. If set and the collection does not exists, then will create a new collection. If set and the collection exists, the collection will be updated. If not set and the collection exists on prisma, the script will fail. 
+* ```--overwrite``` (optional): Override an existing collection. If set and the collection does not exists, then will create a new collection. If set and the collection exists, the collection will be updated. If not set and the collection exists on prisma, the script will fail. 
 * ```--delete``` (optional): Delete an existing collection. 
 * ```--delete-list``` (optional): Delete multiple existing collections.
 * ```--file``` (optional): Create a collection using a JSON file.

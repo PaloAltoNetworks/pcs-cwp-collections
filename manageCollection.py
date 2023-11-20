@@ -138,7 +138,7 @@ if __name__ == "__main__":
     parser.add_argument("-C", "--clusters", nargs='+', default=["*"], help="Clusters for the collection. If empty will catch all.")
     parser.add_argument("-o", "--color", type=str, default="#000000", help="color of the collection.")
     parser.add_argument("--skip-tls-verify", action="store_false", default=SKIP_VERIFY, help="Skip TLS verification")
-    parser.add_argument("-O", "--override", action="store_true", help="Override any existing collection.")
+    parser.add_argument("-O", "--overwrite", action="store_true", help="Overwrites any existing collection.")
     parser.add_argument("-d", "--delete", action="store_true", help="Delete an existing collection.")
     parser.add_argument("-D", "--delete-list", nargs='+', default=[], help="List of collections to be deleted.")
     parser.add_argument("-F", "--file", type=str, default="", help="Upload a collection from file in json format.")

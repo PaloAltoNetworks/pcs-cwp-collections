@@ -25,7 +25,7 @@ This script is meant for creating, updating and deleting collections on Prisma C
 
 * Deleting multiple collections
 
->```$ python3 manageCollection.py --collection-name $COLLECTION_NAME --username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --delete-list $COLLECTION_1 $COLLECTION_2 ... $COLLECTION_N --skip-tls-verify```
+>```$ python3 manageCollection.py--username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --delete-list $COLLECTION_1 $COLLECTION_2 ... $COLLECTION_N --skip-tls-verify```
 
 ### Parameters
 * ```--collection-name``` (optional): Name of the collection to be created, updated or deleted.

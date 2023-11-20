@@ -96,6 +96,22 @@ def create_collection(
         else:
             sys.exit(2)
 
+def delete_collection(
+        api_endpoint,
+        token,
+        name,
+        verify=True
+    ):
+
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/json"
+    }
+
+    response = requests.delete(f"{api_endpoint}/api/v1/collections/{name}", headers=headers, verify=verify)
+    if response.status_code == 200:
+        print(f"Collection {name} successfully deleted.")
+
 
 if __name__ == "__main__":
     parser.add_argument("-n", "--collection-name", type=str, required=True, help="Name of the collection")
@@ -115,29 +131,44 @@ if __name__ == "__main__":
     parser.add_argument("-o", "--color", type=str, default="#000000", help="color of the collection.")
     parser.add_argument("--skip-tls-verify", action="store_false", default=SKIP_VERIFY, help="Skip TLS verification")
     parser.add_argument("-O", "--override", action="store_true", help="Override any existing collection.")
-
+    parser.add_argument("-D", "--delete", action="store_true", help="Delete an existing collection.")
 
     args = parser.parse_args()
     username = args.username
     password = args.password
     compute_api_endpoint = args.compute_api_endpoint
     verify = not args.skip_tls_verify
+    override = args.override
+    delete = args.delete
 
-    create_collection(
-        compute_api_endpoint,
-        getToken(username, password, compute_api_endpoint, verify),
-        name=args.collection_name,
-        images=args.images,
-        hosts=args.hosts,
-        labels=args.labels,
-        containers=args.containers,
-        functions=args.functions,
-        namespaces=args.namespaces,
-        app_ids=args.app_ids,
-        account_ids=args.account_ids,
-        code_repos=args.code_repos,
-        clusters=args.clusters,
-        color=args.color,
-        verify=verify,
-        override=args.override
-    )
+    if delete and override:
+        print("Collecction cannot be deleted and overwritten at the same time.")
+        sys.exit(2)
+
+    if delete:
+        delete_collection(
+            compute_api_endpoint,
+            getToken(username, password, compute_api_endpoint, verify),
+            name=args.collection_name,
+            verify=verify
+        )
+
+    else:
+        create_collection(
+            compute_api_endpoint,
+            getToken(username, password, compute_api_endpoint, verify),
+            name=args.collection_name,
+            images=args.images,
+            hosts=args.hosts,
+            labels=args.labels,
+            containers=args.containers,
+            functions=args.functions,
+            namespaces=args.namespaces,
+            app_ids=args.app_ids,
+            account_ids=args.account_ids,
+            code_repos=args.code_repos,
+            clusters=args.clusters,
+            color=args.color,
+            verify=verify,
+            override=override
+        )

@@ -9,31 +9,31 @@ This script is meant for creating, updating and deleting collections on Prisma C
 ## Usage
 * Creating a single collection
 
-```bash
-$ python3 manageCollection.py --collection-name $COLLECTION_NAME --username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --images $IMAGE_1 $IMAGE_2 ... $IMAGE_N --hosts $HOST_1 $HOST_2 ... $HOST_N --labels $LABEL_1 $LABEL_2 ... $LABEL_N --containers $CONTAINER_1 $CONTAINER_2 ... $CONTAINER_N --functions $FUNCTION_1 $FUNCTION_2 ... $FUNCTION_N --namespaces $NAMESPACE_1 $NAMESPACE_2 ... $NAMESPACE_N --app-ids $APPID_1 $APPID_2 ... $APPID_N --account-ids $ACCOUNT_1 $ACCOUNT_2 ... $ACCOUNT_N --code-repos $REPO_1 $REPO_2 ... $REPO_N --clusters $CLUSTER_1 $CLUSTER_2 ... $CLUSTER_N --color "#000000" --override --skip-tls-verify
+```js
+$ python3 manageCollection.py --collection-name $COLLECTION_NAME --username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --images $IMAGE_1 $IMAGE_2 ... $IMAGE_N --hosts $HOST_1 $HOST_2 ... $HOST_N --labels $LABEL_1 $LABEL_2 ... $LABEL_N --containers $CONTAINER_1 $CONTAINER_2 ... $CONTAINER_N --functions $FUNCTION_1 $FUNCTION_2 ... $FUNCTION_N --namespaces $NAMESPACE_1 $NAMESPACE_2 ... $NAMESPACE_N --app-ids $APPID_1 $APPID_2 ... $APPID_N --account-ids $ACCOUNT_1 $ACCOUNT_2 ... $ACCOUNT_N --code-repos $REPO_1 $REPO_2 ... $REPO_N --clusters $CLUSTER_1 $CLUSTER_2 ... $CLUSTER_N --color #000000 --override --skip-tls-verify
 ```
 
 * Creating a single collection using a JSON file
 
-```bash
+```js
 $ python3 manageCollection.py --username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --file $FILENAME --skip-tls-verify
 ```
 
 * Creating multiple collections using a directory path with JSON files
 
-```bash
+```js
 $ python3 manageCollection.py --username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --path $PATH --skip-tls-verify
 ```
 
 * Deleting a single collection
 
-```bash
+```js
 $ python3 manageCollection.py --collection-name $COLLECTION_NAME --username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --delete --skip-tls-verify
 ```
 
 * Deleting multiple collections
 
-```bash
+```js
 $ python3 manageCollection.py--username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --delete-list $COLLECTION_1 $COLLECTION_2 ... $COLLECTION_N --skip-tls-verify
 ```
 

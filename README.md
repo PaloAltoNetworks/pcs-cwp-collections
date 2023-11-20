@@ -9,15 +9,15 @@ This script is meant for creating, updating and deleting collections on Prisma C
 ## Usage
 * Creating a single collection
 
->```$ python3 manageCollection.py --collection-name $COLLECTION_NAME --username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --images $IMAGE_1 $IMAGE_2 ... $IMAGE_N --hosts $HOST_1 $HOST_2 ... $HOST_N --labels $LABEL_1 $LABEL_2 ... $LABEL_N --containers $CONTAINER_1 $CONTAINER_2 ... $CONTAINER_N --functions $FUNCTION_1 $FUNCTION_2 ... $FUNCTION_N --namespaces $NAMESPACE_1 $NAMESPACE_2 ... $NAMESPACE_N --app-ids $APPID_1 $APPID_2 ... $APPID_N --account-ids $ACCOUNT_1 $ACCOUNT_2 ... $ACCOUNT_N --code-repos $REPO_1 $REPO_2 ... $REPO_N --clusters $CLUSTER_1 $CLUSTER_2 ... $CLUSTER_N --color #000000 --override --skip-tls-verify```
+>```$ python3 manageCollection.py --collection-name $COLLECTION_NAME --username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --images $IMAGE_1 $IMAGE_2 ... $IMAGE_N --hosts $HOST_1 $HOST_2 ... $HOST_N --labels $LABEL_1 $LABEL_2 ... $LABEL_N --containers $CONTAINER_1 $CONTAINER_2 ... $CONTAINER_N --functions $FUNCTION_1 $FUNCTION_2 ... $FUNCTION_N --namespaces $NAMESPACE_1 $NAMESPACE_2 ... $NAMESPACE_N --app-ids $APPID_1 $APPID_2 ... $APPID_N --account-ids $ACCOUNT_1 $ACCOUNT_2 ... $ACCOUNT_N --code-repos $REPO_1 $REPO_2 ... $REPO_N --clusters $CLUSTER_1 $CLUSTER_2 ... $CLUSTER_N --color #000000 --overwrite --skip-tls-verify```
 
 * Creating a single collection using a JSON file
 
->```$ python3 manageCollection.py --username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --file $FILENAME --skip-tls-verify```
+>```$ python3 manageCollection.py --username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --file $FILENAME --overwrite --skip-tls-verify```
 
 * Creating multiple collections using a directory path with JSON files
 
->```$ python3 manageCollection.py --username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --path $PATH  --skip-tls-verify```
+>```$ python3 manageCollection.py --username $PRISMA_USERNAME --password $PRISMA_PASSWORD --compute-api-endpoint $COMPUTE_API_ENDPOINT --path $PATH --overwrite --skip-tls-verify```
 
 * Deleting a single collection
 
@@ -42,7 +42,7 @@ This script is meant for creating, updating and deleting collections on Prisma C
 * ```--code-repos``` (optional): Code repositories to be scoped by the collection. If not set it will use the wildcard value of **[*]**.
 * ```--clusters``` (optional): Clusters to be scoped by the collection. If not set it will use the wildcard value of **[*]**.
 * ```--color``` (optional): Color to be used by the collection on the Web UI. This must be an hexadecimal value. By default it's value is **#000000** which represents the color black.
-* ```--overwrite``` (optional): Override an existing collection. If set and the collection does not exists, then will create a new collection. If set and the collection exists, the collection will be updated. If not set and the collection exists on prisma, the script will fail. 
+* ```--overwrite``` (optional): Overwrites an existing collection. If set and the collection does not exists, then will create a new collection. If set and the collection exists, the collection will be updated. If not set and the collection exists on prisma, the script will fail. 
 * ```--delete``` (optional): Delete an existing collection. 
 * ```--delete-list``` (optional): Delete multiple existing collections.
 * ```--file``` (optional): Create a collection using a JSON file.

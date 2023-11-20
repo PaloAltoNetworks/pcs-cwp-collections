@@ -1,0 +1,14 @@
+{
+    "name": "mycol",
+    "images": ["*"],
+    "hosts": ["*"],
+    "labels": ["*"],
+    "containers": ["*"],
+    "functions": ["*"],
+    "namespaces": ["*"],
+    "appIDs": ["*"],
+    "accountIDs": ["*"],
+    "codeRepos": ["*"],
+    "clusters": ["*"], 
+    "color": "#000000"
+}

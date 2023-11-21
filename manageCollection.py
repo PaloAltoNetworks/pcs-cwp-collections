@@ -74,8 +74,6 @@ def create_collection(
         "Accept": "application/json"
     }
 
-
-    print(f"Trying to create collection {name}...")
     response = requests.post(f"{api_endpoint}/api/v1/collections", json=data, headers=headers, verify=verify)
 
     if response.status_code == 200:

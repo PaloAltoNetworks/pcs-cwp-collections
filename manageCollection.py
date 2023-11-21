@@ -4,9 +4,9 @@ import os
 import sys
 import json
 
-from dotenv import load_dotenv
-
-load_dotenv()
+if os.path.exists(".env"):
+    from dotenv import load_dotenv
+    load_dotenv()
 
 parser = argparse.ArgumentParser(
     prog='python3 manageCollection.py',
@@ -40,7 +40,7 @@ def upload_file(
         token, 
         filename,
         verify=True,
-        override=False
+        overwrite=False
     ):
 
     with open(filename) as f:
@@ -57,7 +57,7 @@ def upload_file(
         name,
         data, 
         verify,
-        override
+        overwrite
     )
 
 def create_collection(
@@ -66,7 +66,7 @@ def create_collection(
         name, 
         data,
         verify=True,
-        override=False
+        overwrite=False
     ):
     
     headers = {
@@ -84,7 +84,7 @@ def create_collection(
     
     else:
         print(f"Error while creating collection {name}. Error: {response.json()['err']}")
-        if override:
+        if overwrite:
             print(f"Trying to update collection {name}...")
             response = requests.put(f"{api_endpoint}/api/v1/collections/{name}", json=data, headers=headers, verify=verify)
             
@@ -150,13 +150,13 @@ if __name__ == "__main__":
     compute_api_endpoint = args.compute_api_endpoint
     name = args.collection_name
     verify = not args.skip_tls_verify
-    override = args.override
+    overwrite = args.overwrite
     delete = args.delete
     delete_list = args.delete_list
     filename = args.file
     path = args.path
 
-    if delete and override:
+    if delete and overwrite:
         parser.error("--delete and --overwrite cannot be used at the same time.")
 
     if delete and delete_list:
@@ -214,7 +214,7 @@ if __name__ == "__main__":
                 getToken(username, password, compute_api_endpoint, verify),
                 filename=filename,
                 verify=verify,
-                override=override
+                overwrite=overwrite
             )
 
             if succeded:
@@ -229,7 +229,7 @@ if __name__ == "__main__":
                     getToken(username, password, compute_api_endpoint, verify),
                     filename=f"{path}/{filename}",
                     verify=verify,
-                    override=override
+                    overwrite=overwrite
                 )
 
                 if succeded:
@@ -269,7 +269,7 @@ if __name__ == "__main__":
                 name=name,
                 data=data,
                 verify=verify,
-                override=override
+                overwrite=overwrite
             )
 
             if not succeded:

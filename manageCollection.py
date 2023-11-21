@@ -10,7 +10,7 @@ if os.path.exists(".env"):
 
 parser = argparse.ArgumentParser(
     prog='python3 manageCollection.py',
-    description='Useful for createting, updating and deleting Collections in Prisma Cloud Compute',
+    description='Useful for creating, updating and deleting Collections in Prisma Cloud Compute',
     epilog='For further documentation go to: https://github.com/PaloAltoNetworks/pcs-cwp-collections'
 )
 

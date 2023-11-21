@@ -32,8 +32,8 @@ def getToken(username, password, api_endpoint, verify):
     if response.status_code == 200:
         return response.json()["token"]
     
-    print(response.json())
-    sys.exit(2)
+    print(f"Error while authenticating. Error: {response.json()['err']}")
+    sys.exit(5)
 
 def upload_file(
         api_endpoint,
@@ -155,6 +155,7 @@ if __name__ == "__main__":
     delete_list = args.delete_list
     filename = args.file
     path = args.path
+    exit_code = 0
 
     if delete and overwrite:
         parser.error("--delete and --overwrite cannot be used at the same time.")
@@ -178,7 +179,7 @@ if __name__ == "__main__":
             )
 
             if not succeded:
-                sys.exit(2)
+                exit_code = 5
 
         if delete_list:
             deleted_colls = []
@@ -201,12 +202,15 @@ if __name__ == "__main__":
                 print(f"Collections deleted: {', '.join(deleted_colls)}")
             else:
                 print(f"Collections not deleted: None")
+                exit_code = 5
 
             if not_deleted_colls:
                 print(f"Collections not deleted: {', '.join(not_deleted_colls)}")
+                exit_code = 5
             else:
                 print(f"Collections not deleted: None")
-                
+
+
     else:
         if filename:
             succeded = upload_file(
@@ -224,26 +228,29 @@ if __name__ == "__main__":
             succeded_files = []
             failed_files = []
             for filename in os.listdir(path):
-                succeded = upload_file(
-                    compute_api_endpoint,
-                    getToken(username, password, compute_api_endpoint, verify),
-                    filename=f"{path}/{filename}",
-                    verify=verify,
-                    overwrite=overwrite
-                )
+                if filename.endswith(".json"):
+                    succeded = upload_file(
+                        compute_api_endpoint,
+                        getToken(username, password, compute_api_endpoint, verify),
+                        filename=f"{path}/{filename}",
+                        verify=verify,
+                        overwrite=overwrite
+                    )
 
-                if succeded:
-                    succeded_files.append(filename)
-                else:
-                    failed_files.append(filename)
+                    if succeded:
+                        succeded_files.append(filename)
+                    else:
+                        failed_files.append(filename)
 
             if succeded_files:
                 print(f"Succeded files: {', '.join(succeded_files)}")
             else:
                 print(f"Succeded files: None")
+                exit_code = 5
 
             if failed_files:
                 print(f"Failed files: {', '.join(failed_files)}")
+                exit_code = 5
             else:
                 print(f"Failed files: None")
 
@@ -273,4 +280,6 @@ if __name__ == "__main__":
             )
 
             if not succeded:
-                sys.exit(2)
+                exit_code = 5
+    
+    sys.exit(exit_code)
